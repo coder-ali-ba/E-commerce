@@ -1,4 +1,4 @@
-import mongoose, { model, Schema } from "mongoose";
+import {mongoose,  model, Schema } from "mongoose";
 
 const userModels = new mongoose.Schema({
     fullName : {
@@ -15,7 +15,7 @@ const userModels = new mongoose.Schema({
     },
     phoneNo : {
         type : String,
-        required
+        required : true
     },
     createdAt :{
         type : Date,
@@ -24,6 +24,7 @@ const userModels = new mongoose.Schema({
     createdBy : {},
     userType : {
         type : String,
+        required : true,
         enum : ["user" , "admin"]
     }
 })
