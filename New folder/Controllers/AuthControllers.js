@@ -1,6 +1,7 @@
 import { response } from "express"
 import allUsers from "../models/AuthModels.js"
 import bcrypt from "bcryptjs"
+import jwt from "jsonwebtoken"
 
 const signUpController = async(req , res) => { 
     const body = req.body   
@@ -50,9 +51,11 @@ const logInController = async(req , res) => {
             message : "Invalid Email or Password"
         })
     }
+    const token = jwt.sign({id : checkEmail._id }, process.env.SECRET_Token)
     res.status(200).json({
         message : "Logged in successfully",
-        data : checkEmail
+        data : checkEmail,
+        token : token
     })
 }
 
