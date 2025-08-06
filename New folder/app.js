@@ -3,6 +3,8 @@ import dotenv from "dotenv"
 import cors from "cors"
 import AuthRouter from "./Routes/AuthRoute.js";
 import mongoose from "mongoose";
+import itemRouter from "./Routes/ItemRoutes.js";
+import uploadRouter from "./Routes/uploadImageRoute.js";
 
 const app = express()
 dotenv.config()
@@ -16,6 +18,8 @@ mongoose.connect(process.env.MONGO_URI)
 
 
 app.use("/api/auth" , AuthRouter)
+app.use("/api/item" , itemRouter)
+app.use("/api/image" , uploadRouter)
 
 
 const PORT = process.env.PORT
