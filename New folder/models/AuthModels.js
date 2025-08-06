@@ -26,6 +26,10 @@ const userModels = new mongoose.Schema({
         type : String,
         required : true,
         enum : ["user" , "admin"]
+    },
+    isVarified :{
+       type : Boolean,
+       default : false
     }
 })
 
