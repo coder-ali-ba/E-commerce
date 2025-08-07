@@ -23,7 +23,8 @@ const signUpController = async(req , res) => {
     const userObj = {
         ...req.body,
         password : hashPass,
-        userType : "user"
+        userType : "user",
+        
     }
     const createUser = await allUsers.create(userObj)
 
