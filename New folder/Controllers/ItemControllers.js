@@ -12,10 +12,18 @@ const addItem = async(req , res) => {
         res.status(500).json({
             message : "Something went wrong"
         })
-    }
-   
+    }   
+}
+
+const getAllItems = async(req , res) => {
+    const allItems = await itemModel.find()
+    res.json({
+        message : "Successfully got All Items",
+        data : allItems
+    })
 }
 
 export {
-    addItem
+    addItem,
+    getAllItems
 }
