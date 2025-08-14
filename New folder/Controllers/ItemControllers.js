@@ -23,7 +23,14 @@ const getAllItems = async(req , res) => {
     })
 }
 
+const changeItemStatus = async(req , res) => {
+    res.json({
+        message : "got it"
+    })
+}
+
 export {
     addItem,
-    getAllItems
+    getAllItems,
+    changeItemStatus
 }
