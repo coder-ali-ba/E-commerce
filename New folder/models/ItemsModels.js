@@ -18,9 +18,8 @@ const itemSchema = new mongoose.Schema({
     required: true,
   },
   isAvailable : {
-    type : String,
-    enum : ["available" , "out of stock"],
-    default : "available"
+    type : Boolean,
+    default : false
   },
   image :{
      type : String

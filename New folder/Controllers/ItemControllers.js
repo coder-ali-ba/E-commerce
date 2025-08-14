@@ -24,13 +24,52 @@ const getAllItems = async(req , res) => {
 }
 
 const changeItemStatus = async(req , res) => {
+    try {
+       const itemId = req.params.id
+       const item = await itemModel.findById(itemId)
+    
+       const updatedStatus = {
+         isAvailable : !item.isAvailable
+       }
+       const updateStatus = await itemModel.findByIdAndUpdate(itemId , updatedStatus , {new : true})
+
+       res.json({
+           message : "Successfully Updated Status",
+           data : updateStatus
+       }) 
+    } catch (error) {
+        res.status(500).json({
+            message : "something went wrong"
+        })
+    }
+}
+
+
+
+const deleteItemController = async(req , res) => {
+    try {
+       const delId = req.params.id
+       const deletedItem = await itemModel.findByIdAndDelete(delId)
+       res.status(200).json({
+          message : "deleted Item Successfully "
+       }) 
+    } catch (error) {
+        res.status(500).json({
+            message : "something went wrong"
+        })
+    }
+    
+}
+const updateItemController = async(req , res) => {
     res.json({
-        message : "got it"
+        message : "Got "
     })
 }
 
 export {
     addItem,
     getAllItems,
-    changeItemStatus
+    changeItemStatus,
+    deleteItemController,
+    updateItemController
 }
