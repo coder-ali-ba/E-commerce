@@ -61,9 +61,32 @@ const deleteItemController = async(req , res) => {
     
 }
 const updateItemController = async(req , res) => {
-    res.json({
-        message : "Got "
-    })
+    
+    try {
+       const itemId = req.params.id
+       const body = req.body
+    //    res.json({
+    //     message : "got It",
+    //     data : body
+    //    })
+       const updatedItem = await itemModel.findByIdAndUpdate(itemId , body , {new : true})
+
+       if (!updatedItem) {
+         return res.status(404).json({
+          message: "Item not found",
+         });
+        }
+
+       res.status(201).json({
+        message : "Successfully updated Item ",
+        data : updatedItem
+       }) 
+    } catch (error) {
+        res.status(500).json({
+            message : "Something went wrong"
+        })
+    }
+    
 }
 
 export {
